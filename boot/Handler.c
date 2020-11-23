@@ -1,10 +1,3 @@
-/*
- * Handler.c
- *
- *  Created on: Sep 22, 2018
- *      Author: maanu
- */
-
 #include "stdint.h"
 #include "HalInterrupt.h"
 

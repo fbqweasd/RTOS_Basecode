@@ -1,10 +1,3 @@
-/*
- * memio.h
- *
- *  Created on: Sep 21, 2018
- *      Author: maanu
- */
-
 #ifndef INCLUDE_MEMIO_H_
 #define INCLUDE_MEMIO_H_
 

@@ -1,10 +1,3 @@
-/*
- * armcpu.c
- *
- *  Created on: Sep 22, 2018
- *      Author: maanu
- */
-
 #include "armcpu.h"
 
 void enable_irq(void)

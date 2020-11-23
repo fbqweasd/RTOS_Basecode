@@ -1,10 +1,3 @@
-/*
- * armcpu.h
- *
- *  Created on: Sep 22, 2018
- *      Author: maanu
- */
-
 #ifndef LIB_ARMCPU_H_
 #define LIB_ARMCPU_H_
 
