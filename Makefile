@@ -9,8 +9,8 @@ AS = arm-none-eabi-as
 LD = arm-none-eabi-gcc
 OC = arm-none-eabi-objcopy
 
-LINKER_SCRIPT = ./navilos.ld
-MAP_FILE = build/navilos.map
+LINKER_SCRIPT = ./uos.ld
+MAP_FILE = build/uos.map
 
 ASM_SRCS = $(wildcard boot/*.S)
 ASM_OBJS = $(patsubst boot/%.S, build/%.os, $(ASM_SRCS))
@@ -36,28 +36,28 @@ CFLAGS = -c -g -std=c11 -mthumb-interwork
 
 LDFAGS = -nostartfiles -nostdlib -nodefaultlibs -static -lgcc
 
-navilos = build/navilos.axf
-navilos_bin = build/navilos.bin
+uos = build/uos.axf
+uos_bin = build/uos.bin
 
 .PHONY: all clean run dubug gdb
 
-all: $(navilos)
+all: $(uos)
 
 clean :
 	@rm -rf build
 
-run: $(navilos)
-	qemu-system-arm -M realview-pb-a8 -kernel $(navilos) -nographic
+run: $(uos)
+	qemu-system-arm -M realview-pb-a8 -kernel $(uos) -nographic
 
-debug: $(navilos)
-	qemu-system-arm -M realview-pb-a8 -kernel $(navilos) -S -gdb tcp::1235,ipv4 -nographic
+debug: $(uos)
+	qemu-system-arm -M realview-pb-a8 -kernel $(uos) -S -gdb tcp::1235,ipv4 -nographic
 
 gdb:
 	arm-none-eabi-gdb
 
-$(navilos): $(ASM_OBJS) $(C_OBJS) $(LINKER_SCRIPT)
-	$(LD) -n -T $(LINKER_SCRIPT) -o $(navilos) $(ASM_OBJS) $(C_OBJS) -Wl,-Map=$(MAP_FILE) $(LDFAGS) 
-	$(OC) -O binary $(navilos) $(navilos_bin)
+$(uos): $(ASM_OBJS) $(C_OBJS) $(LINKER_SCRIPT)
+	$(LD) -n -T $(LINKER_SCRIPT) -o $(uos) $(ASM_OBJS) $(C_OBJS) -Wl,-Map=$(MAP_FILE) $(LDFAGS) 
+	$(OC) -O binary $(uos) $(uos_bin)
 
 build/%.os: %.S
 	mkdir -p $(shell dirname $@)
